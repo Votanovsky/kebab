@@ -7,36 +7,62 @@ window.addEventListener('resize', () => {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 
+var keys = [];
 
 function onKeyDown(event) {
-    switch(event.key)
-        {
-            case "ф":
-            case "Ф":
-            case 'a':
-            case 'A':
-            case 'Left':
-            case 'ArrowLeft':
-                if(stick.proto.offsetLeft > 0)
-                gsap.to(stick.proto, {
-                    duration: .04,
-                    left: stick.proto.offsetLeft-12
-                })
-                break
-            case 'в':
-            case 'В':
-            case 'd':
-            case 'D':
-            case 'Right':
-            case 'ArrowRight':    
-                if(stick.proto.offsetLeft + stick.proto.offsetWidth + 12 < window.innerWidth)
-                gsap.to(stick.proto, {
-                    duration: .04,
-                    left: stick.proto.offsetLeft+12
-                })
-                break
-    }
+    // switch(event.key)
+    //     {
+    //         case "ф":
+    //         case "Ф":
+    //         case 'a':
+    //         case 'A':
+    //         case 'Left':
+    //         case 'ArrowLeft':
+    //             if(stick.proto.offsetLeft > 0)
+    //             gsap.to(stick.proto, {
+    //                 duration: .04,
+    //                 left: stick.proto.offsetLeft-12
+    //             })
+    //             break
+    //         case 'в':
+    //         case 'В':
+    //         case 'd':
+    //         case 'D':
+    //         case 'Right':
+    //         case 'ArrowRight':    
+    //             if(stick.proto.offsetLeft + stick.proto.offsetWidth + 12 < window.innerWidth)
+    //             gsap.to(stick.proto, {
+    //                 duration: .04,
+    //                 left: stick.proto.offsetLeft+12
+    //             })
+    //             break
+    // }
+    keys[event.code] = true;
 }
+
+function onKeyUp(event) {
+    delete keys[event.code];
+}
+
+setInterval(() => {
+    if (!(keys['KeyD'] || keys['ArrowRight']) && (keys['KeyA'] || keys['ArrowLeft'])) {
+        if(stick.proto.offsetLeft > 0)
+                gsap.to(stick.proto, {
+                    duration: .16,
+                    left: stick.proto.offsetLeft-36
+                })
+    }
+
+    if (!(keys['KeyA'] || keys['ArrowLeft']) && (keys['KeyD'] || keys['ArrowRight'])) {
+        if(stick.proto.offsetLeft + stick.proto.offsetWidth + 12 < window.innerWidth)
+                gsap.to(stick.proto, {
+                    duration: .16,
+                    left: stick.proto.offsetLeft+36
+                })
+    }
+}, 100);
+
+
 function onTouch(event)
 {
     const
@@ -52,6 +78,7 @@ function onTouch(event)
 class MeatStick {constructor(){
     this.proto=document.querySelector('.player-stick')
     window.addEventListener("keydown", onKeyDown)
+    window.addEventListener("keyup", onKeyUp)
     window.addEventListener("touchstart", onTouch)
     window.addEventListener("touchmove", onTouch)
 }}
@@ -236,6 +263,7 @@ function startGame()
     document.querySelector('.overlay_end').classList.add('hidden')
     document.querySelector('.game').classList.remove('hidden')
     window.addEventListener('keydown', onKeyDown),
+    window.addEventListener('keyup', onKeyUp),
     window.addEventListener("touchstart", onTouch),
     window.addEventListener("touchmove", onTouch),
     [...document.querySelectorAll('.slice')].forEach(slice => {slice.classList.add('hidden')}),
@@ -282,7 +310,6 @@ function startGame()
 
 document.querySelector('.start_btn').addEventListener('click', startGame)
 document.querySelector('.game_over_btn').addEventListener('click', startGame)
-document.querySelector('.form_btn').addEventListener('click', sendMail)
 
 
 function clean() {
@@ -294,6 +321,7 @@ function clean() {
     //     toggled = null   
     // }
     window.removeEventListener("keydown", onKeyDown)
+    window.removeEventListener("keyup", onKeyUp)
     window.removeEventListener("touchstart", onTouch)
     window.removeEventListener("touchmove", onTouch)
     if(summonBox)
@@ -350,7 +378,6 @@ function gameOver()
 
 
 const form = document.querySelector('form')
-form.addEventListener('submit', sendMail)
 
 async function sendMail(e) {
     e.preventDefault()
@@ -364,21 +391,6 @@ async function sendMail(e) {
         document.querySelector
     }
     else {
-        fetch('./mail.php', {
-            method: "POST",
-            headers: {
-                "Accept": "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-                "X-Requested-With": "XMLHttpRequest",    
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify({
-                name: document.querySelector("#name").value,
-                phone: document.querySelector("#phone").value,
-                email: document.querySelector("#email").value,
-                discount
-            })
-        }).then(res => res.json()).then(res => console.log(res))
         setTimeout( () => {
         document.querySelector('.overlay_form').classList.add('hidden')
         document.querySelector('.overlay_sale').classList.remove('hidden')
@@ -400,7 +412,7 @@ function playStartAudio()
         assigned = true
     }
     start.play()
-} 
+}
 
 function toggleStartAudio() {
     if(! toggled)
@@ -416,3 +428,48 @@ function toggleStartAudio() {
     // document.querySelector('.audio_btn').removeEventListener('click', play)
 }
 document.querySelector('.audio_btn').addEventListener('click', toggleStartAudio)
+
+
+// Отправка данных в таблицу
+jQuery(function() {
+    jQuery("form").submit(function (event) {
+        event.preventDefault();
+  
+        let appLink = "https://script.google.com/macros/s/AKfycbyX7mPTcXVOIeP67_rYLJIq946MRVMM7AklgIt6BMr1W1TmngbaMwdSls_a-pYLn5LA/exec";
+     
+        let successRespond = 'Заявка принята! Наш менеджер свяжется с вами в ближайшее время.';
+     
+        let errorRespond = 'Не удалось отправить заявку.';
+  
+        let submitButton = $(".form_btn");
+     
+        let fd = new FormData(this);
+        fd.append('Очки за игру', discount);
+     
+        $.ajax({
+     
+          url: appLink,
+          type: "POST",
+          data: fd,
+          processData: false,
+          contentType: false,
+
+          beforeSend: function(){   
+          submitButton.prop('disabled', true);
+        },
+     
+      }).done(function(res, textStatus, jqXHR) {
+     
+        if(jqXHR.readyState === 4 && jqXHR.status === 200) {
+          
+        submitButton.prop('disabled', false);
+     
+        } else {
+          // console.log(errorRespond);
+        }
+      }).fail(function(res, textStatus, jqXHR) {
+        // console.log(errorRespond);
+        
+      }); 
+    });
+    }(jQuery));
