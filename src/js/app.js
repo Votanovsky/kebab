@@ -379,9 +379,7 @@ function gameOver()
 
 const form = document.querySelector('form')
 
-async function sendMail(e) {
-    e.preventDefault()
-
+async function sendMail() {
     if(document.querySelector('input:invalid'))
     {
         // console.log(document.querySelectorAll('input:invalid'))
@@ -391,10 +389,12 @@ async function sendMail(e) {
         document.querySelector
     }
     else {
-        setTimeout( () => {
+        // setTimeout( () => {
+        // document.querySelector('.overlay_form').classList.add('hidden')
+        // document.querySelector('.overlay_sale').classList.remove('hidden')
+        // }, 500)
         document.querySelector('.overlay_form').classList.add('hidden')
         document.querySelector('.overlay_sale').classList.remove('hidden')
-        }, 500)
     }
     form.reset()
 }
@@ -462,7 +462,8 @@ jQuery(function() {
      
         if(jqXHR.readyState === 4 && jqXHR.status === 200) {
           
-        submitButton.prop('disabled', false);
+            sendMail();
+            submitButton.prop('disabled', false);
      
         } else {
           // console.log(errorRespond);
