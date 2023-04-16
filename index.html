@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjRmNWI4NGUxLTU2Y2ItNDViZi05OTRkLTBmZDc2YTEzMzVkNyJ9">
     <title>BONNIE&SLIDE</title>
-    <link rel="stylesheet" href="./css/start.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./src/css/start.css">
+    <link rel="stylesheet" href="./src/css/style.css">
 </head>
 <body>
     <main class="start">
 
-        <img class="start_sun" src="./images/sun.png" alt="">
+        <img class="start_sun" src="./src/images/sun.png" alt="">
 
-        <img class="start_cloud" src="./images/cloud.png" alt="">
-        <img class="start_cloud-left" src="./images/cloud.png" alt="">
-        <img class="start_cloud-right" src="./images/cloud.png" alt="">
+        <img class="start_cloud" src="./src/images/cloud.png" alt="">
+        <img class="start_cloud-left" src="./src/images/cloud.png" alt="">
+        <img class="start_cloud-right" src="./src/images/cloud.png" alt="">
 
-        <img class="start_airshipping" src="./images/airshippng.png" alt="">
+        <img class="start_airshipping" src="./src/images/airshippng.png" alt="">
         
-        <img class="start_ballon-one" src="./images/ballons.png" alt="">
-        <img class="start_ballon-two" src="./images/ballons.png" alt="">
+        <img class="start_ballon-one" src="./src/images/ballons.png" alt="">
+        <img class="start_ballon-two" src="./src/images/ballons.png" alt="">
 
-        <img class="start_char" src="./images/char_srart.png" alt="">
+        <img class="start_char" src="./src/images/char_srart.png" alt="">
 
         <div class="start_go">
             <div class="start_title">Пожарь шашлык</div>
@@ -82,7 +82,7 @@
 
     <!-- Конец игры -->
     <div class="overlay_end hidden">
-        <img class="game_over" src="./images/game_over.png" alt="">
+        <img class="game_over" src="./src/images/game_over.png" alt="">
         <span class="game_over hidden">Для того чтобы<br>пожарить шашлык,<br>нужно мясо</span>
         <button class="game_over_btn">
             Играть ещё раз
@@ -93,9 +93,9 @@
     <!-- Ваша скидка -->
     <div class="overlay_sale hidden">
         
-        <img class="hand_two" src="./images/hand_two.png" alt="">
-        <img class="hand_three" src="./images/hand_three.png" alt="">
-        <img class="smoke" src="./images/smoke.png" alt="">
+        <img class="hand_two" src="./src/images/hand_two.png" alt="">
+        <img class="hand_three" src="./src/images/hand_three.png" alt="">
+        <img class="smoke" src="./src/images/smoke.png" alt="">
         <div >
             <div class="overlay_sale-title">
                 Ты собрал <span class="slice_count"></span> <span class="output"></span> 
@@ -175,7 +175,7 @@
     <!-- Отправка данных -->
     <div class="overlay_form hidden">
         <div class="overlay_form-fire">
-            <img src="./images/smoke_2.png" alt="">
+            <img src="./src/images/smoke_2.png" alt="">
         </div>
         <div class="overlay_form-kebab"> 
             <img src="/src/images/kebab.png" alt=""> 
@@ -235,8 +235,8 @@
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
-    <script src="./dist/js/jquery.maskedinput.min.js"></script>
-    <script src="dist/js/app.js"></script>
+    <script src="./src/dist/js/jquery.maskedinput.min.js"></script>
+    <script src="./src/dist/js/app.js"></script>
     <script type="text/javascript">
         // $(document).on("ready",function(){
             $("#phone").mask("+7 (999) 999-9999", { placeholder: "+7 (___) ___-____" })

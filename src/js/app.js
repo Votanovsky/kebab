@@ -444,7 +444,7 @@ jQuery(function() {
         let submitButton = $(".form_btn");
      
         let fd = new FormData(this);
-        fd.append('Очки за игру', discount);
+        fd.append('Кол-во собранных кусков мяса', discount / 1000);
      
         $.ajax({
      
