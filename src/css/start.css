@@ -55,15 +55,17 @@ body {
     position: absolute;
     right: 10%;
     top: 30%;
+    z-index: 10;
     width: 10%;
     transform: rotate(45deg);
     animation: ballon2 3s ease-in-out infinite 0.5s;
 }
 
 .start_cloud {
-    width: 60%;
+    width: 70%;
     position: absolute;
-    top: 2%;
+    top: -10%;
+    opacity: .85;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -71,14 +73,16 @@ body {
 
 .start_cloud-left {
     position: absolute;
-    left: -20%;
-    bottom: 5%;
-    width: 35%;
+    left: -12%;
+    bottom: 6%;
+    opacity: .7;
+    width: 30%;
 }
 .start_cloud-right {
     position: absolute;
     right: -10%;
     bottom: 20%;
+    opacity: .7;
     width: 25%;
 }
 
@@ -630,7 +634,7 @@ label {
     .start_cloud-right {
         position: absolute;
         right: -10px;
-        bottom: 30%;
+        bottom: 35%;
         width: 50%;
     }
     .start_ballon-one {

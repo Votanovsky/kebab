@@ -68,7 +68,7 @@ html, body {
     left: 10%;
     /* transform: scale(1, -1); */
     top: 10%;
-    background: url("../images/cloud.png") 50% 50% no-repeat;
+    background: url("../images/облако2.png") 50% 50% no-repeat;
     background-size: contain;
     z-index: 100;
     animation: cloidmove4 15s ease-in-out infinite 0.7s;
@@ -79,7 +79,7 @@ html, body {
     position: absolute;
     right: 50%;
     top: 30%;
-    background: url("../images/cloud.png") 50% 50% no-repeat;
+    background: url("../images/облако1.png") 50% 50% no-repeat;
     background-size: contain;
     z-index: 100;
     opacity: .7;
@@ -91,7 +91,7 @@ html, body {
     position: absolute;
     right: 5%;
     top: 5%;
-    background: url("../images/cloud.png") 50% 50% no-repeat;
+    background: url("../images/облако3.png") 50% 50% no-repeat;
     background-size: contain;
     z-index: 100;
     
@@ -106,7 +106,7 @@ html, body {
     position: absolute;
     right: 10%;
     top: 35%;
-    background: url("../images/cloud.png") 50% 50% no-repeat;
+    background: url("../images/облако4.png") 50% 50% no-repeat;
     background-size: contain;
     z-index: 100;
     animation: cloidmove 20s ease-in-out infinite 0.5s;
@@ -119,7 +119,7 @@ html, body {
     position: absolute;
     left: 0%;
     bottom: 30%;
-    background: url("../images/cloud.png") 50% 50% no-repeat;
+    background: url("../images/облако1.png") 50% 50% no-repeat;
     background-size: contain;
     z-index: 100;
     animation: cloidmove5 20s ease-in-out infinite 0.5s;
